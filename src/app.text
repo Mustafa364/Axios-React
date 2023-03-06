@@ -1,0 +1,56 @@
+import axios from "axios";
+import React, { useState } from "react";
+import './App.css'
+ 
+
+
+export default function App(){
+  const[mydata, setData] = useState([]);
+  let api= ('https://api.escuelajs.co/api/v1/products');
+  let menu =[
+    {
+      "id": 4,
+      "title": "Handmade Fresh Table",
+      "price": 6,
+      "description": "Andy shoes are designed to keeping in...",
+      "category": {
+        "id": 5,
+        "name": "Others",
+        "image": "https://placeimg.com/640/480/any?r=0.591926261873231"
+      },
+      "images": [
+        "https://placeimg.com/640/480/any?r=0.9178516507833767",
+        "https://placeimg.com/640/480/any?r=0.9300320592588625",
+        "https://placeimg.com/640/480/any?r=0.8807778235430017"
+      ]
+    }
+    // ...
+  ]
+  
+  axios.get(api).then((response) => {
+    setData(response.data)
+  })
+  return(
+    <div>
+      <h1 className="ttt text-center">Calling Axios Api</h1>
+    <div className="grid">
+      {mydata.map((x, i) => {
+        return(
+          <div key={i} className='card'>
+            <img src={x.images} className='imgg' alt="" />
+            <h4>{x.title}</h4>
+            <p>price ${x.price}</p>
+            
+          </div>
+        )
+      })}
+    </div></div>
+  )
+}
+
+git init
+git add A
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Mustafa364/Axios-React.git
+git push -u origin main
